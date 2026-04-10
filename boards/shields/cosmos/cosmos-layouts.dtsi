@@ -3,7 +3,7 @@
 / {
     physical_layout_cosmos: physical_layout_cosmos {
         compatible = "zmk,physical-layout";
-        display-name = "cosmos";
+        display-name = "Cosmos";
         keys  //                     w   h    x    y     rot    rx    ry
             = <&key_physical_attrs 100 100    0   37       0     0    37>
             , <&key_physical_attrs 100 100  100   37       0   100    37>
