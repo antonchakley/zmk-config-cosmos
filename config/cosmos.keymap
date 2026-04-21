@@ -19,11 +19,11 @@
 
         layer_1 {
             bindings = <
-&trans  &trans  &trans  &trans  &trans      &trans   &trans  &trans    &trans     &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &kp K_BACK  &kp DEL  &trans  &kp LEFT  &kp RIGHT  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans      &trans   &trans  &kp UP    &kp DOWN   &trans  &trans  &trans
-                        &mo 2   &trans      &trans   &trans  &trans    &trans
-                                &trans      &trans   &trans  &trans
+&trans  &trans  &trans  &trans  &trans         &trans   &trans  &trans    &trans     &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &kp BACKSPACE  &kp DEL  &trans  &kp LEFT  &kp RIGHT  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans         &trans   &trans  &kp UP    &kp DOWN   &trans  &trans  &trans
+                        &mo 2   &trans         &trans   &trans  &trans    &trans
+                                &trans         &trans   &trans  &trans
             >;
         };
 
