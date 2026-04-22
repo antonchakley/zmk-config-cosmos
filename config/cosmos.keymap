@@ -6,7 +6,7 @@
 // Unicode settings
 &uc {
   default-mode = <UC_MODE_LINUX>;  
-  linux-key = <LC(LS(U))>;
+  linux-key = <INSERT>;
 };
 
 / {
