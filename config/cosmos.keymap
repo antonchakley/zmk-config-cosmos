@@ -5,8 +5,8 @@
 
 // Unicode settings
 &uc {
-  default-mode = <UC_MODE_WIN_ALT>;  
-  win-compose-key = <LALT>;  
+  default-mode = <UC_MODE_LINUX>;  
+  linux-key = <LC(LS(U))>;
 };
 
 / {
