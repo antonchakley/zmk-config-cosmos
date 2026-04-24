@@ -27,19 +27,21 @@
 
     macros {
         langswitch_kp_dot: langswitch_kp_dot {
-            wait-ms = <40>;
-            tap-ms = <40>;
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LC(RIGHT_SHIFT) &kp KP_DOT &kp LC(RIGHT_SHIFT)>;
+            bindings =
+                <&macro_wait_time 40>,
+                <&macro_tap_time 40>,
+                <&kp LC(LEFT_SHIFT) &kp KP_DOT &kp LC(LEFT_SHIFT)>;
+
             label = "LANGSWITCH_KP_DOT";
         };
     };
 
     behaviors {
-        kp_dot: kp_dot {
+        my_kp_dot: my_kp_dot {
             compatible = "zmk,behavior-mod-morph";
-            label = "KP_DOT";
+            label = "MY_KP_DOT";
             bindings = <&kp KP_DOT>, <&langswitch_kp_dot>;
 
             #binding-cells = <0>;
@@ -75,7 +77,7 @@
             bindings = <
 &trans  &trans  &trans  &trans   &trans         &trans  &uc 0x04 0  &kp N7  &kp N8  &kp N9  &trans  &trans
 &trans  &trans  &trans  &kp DEL  &kp BACKSPACE  &trans  &kp N0      &kp N4  &kp N5  &kp N6  &trans  &trans
-&trans  &trans  &trans  &trans   &trans         &trans  &kp_dot     &kp N1  &kp N2  &kp N3  &trans  &trans
+&trans  &trans  &trans  &trans   &trans         &trans  &my_kp_dot  &kp N1  &kp N2  &kp N3  &trans  &trans
                         &trans   &trans         &trans  &trans      &trans  &trans
                                  &trans         &trans  &trans      &trans
             >;
