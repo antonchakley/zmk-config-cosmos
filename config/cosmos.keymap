@@ -27,9 +27,11 @@
 
     macros {
         langswitch_kp_dot: langswitch_kp_dot {
+            wait-ms = <40>;
+            tap-ms = <40>;
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LC(LEFT_SHIFT) &kp KP_DOT &kp LC(LEFT_SHIFT)>;
+            bindings = <&kp LC(RIGHT_SHIFT) &kp KP_DOT &kp LC(RIGHT_SHIFT)>;
             label = "LANGSWITCH_KP_DOT";
         };
     };
