@@ -1,56 +1,91 @@
+#include <behaviors/unicode.dtsi>
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
-#include <behaviors/unicode.dtsi>
 
 // Unicode settings
+
 &uc {
-  default-mode = <UC_MODE_LINUX>;  
-  linux-key = <INSERT>;
+    default-mode = <UC_MODE_LINUX>;
+    linux-key = <INSERT>;
 };
 
 / {
+    combos {
+        compatible = "zmk,combos";
+
+        SysLeft {
+            bindings = <&mo 3>;
+            key-positions = <43 42>;
+        };
+
+        SysRight {
+            bindings = <&mo 3>;
+            key-positions = <44 45>;
+        };
+    };
+
+    macros {
+        langswitch_kp_dot: langswitch_kp_dot {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(LEFT_SHIFT) &kp KP_DOT &kp LC(LEFT_SHIFT)>;
+            label = "LANGSWITCH_KP_DOT";
+        };
+    };
+
+    behaviors {
+        kp_dot: kp_dot {
+            compatible = "zmk,behavior-mod-morph";
+            label = "KP_DOT";
+            bindings = <&kp KP_DOT>, <&langswitch_kp_dot>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
         default_layer {
             display-name = "Base";
             bindings = <
-&kp ESCAPE  &kp Q  &kp W  &kp E      &kp R          &kp T            &kp Y               &kp U  &kp I      &kp O       &kp P          &kp LEFT_BRACKET
-&kp TAB     &kp A  &kp S  &kp D      &kp F          &kp G            &kp H               &kp J  &kp K      &kp L       &kp SEMICOLON  &kp SQT
-&mo 3       &kp Z  &kp X  &kp C      &kp V          &kp B            &kp N               &kp M  &kp COMMA  &kp PERIOD  &kp SLASH      &mo 3
-                          &kp LCTRL  &kp SPACE      &kp LEFT_SHIFT   &mo 2               &mo 1  &kp ENTER
-                                     &kp LEFT_ALT  &kp LEFT_ALT    &kp LC(LEFT_SHIFT)  &mo 2
+&kp ESCAPE  &kp Q  &kp W  &kp E      &kp R         &kp T         &kp Y               &kp U               &kp I      &kp O       &kp P          &kp LEFT_BRACKET
+&kp TAB     &kp A  &kp S  &kp D      &kp F         &kp G         &kp H               &kp J               &kp K      &kp L       &kp SEMICOLON  &kp SQT
+&trans      &kp Z  &kp X  &kp C      &kp V         &kp B         &kp N               &kp M               &kp COMMA  &kp PERIOD  &kp SLASH      &trans
+                          &kp LCTRL  &kp SPACE     &mo 2         &kp LEFT_SHIFT      &mo 1               &kp ENTER
+                                     &kp LEFT_ALT  &kp LEFT_ALT  &kp LC(LEFT_SHIFT)  &kp LC(LEFT_SHIFT)
             >;
         };
 
         layer_1 {
             bindings = <
-&trans  &trans  &trans  &trans  &trans         &trans   &trans  &trans    &trans     &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &kp BACKSPACE  &kp DEL  &trans  &kp LEFT  &kp RIGHT  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans         &trans   &trans  &kp UP    &kp DOWN   &trans  &trans  &trans
-                        &mo 2   &trans         &trans   &trans  &trans    &trans
-                                &trans         &trans   &trans  &trans
+&trans  &trans  &trans  &trans   &trans          &trans  &trans  &trans    &trans     &trans  &trans  &trans
+&trans  &trans  &trans  &kp DEL  &kp BACKSPACE   &trans  &trans  &kp LEFT  &kp RIGHT  &trans  &trans  &trans
+&trans  &trans  &trans  &trans   &trans          &trans  &trans  &kp UP    &kp DOWN   &trans  &trans  &trans
+                        &trans   &kp LEFT_SHIFT  &trans  &trans  &trans    &trans
+                                 &trans          &trans  &trans  &trans
             >;
         };
 
         layer_2 {
             bindings = <
-&trans  &trans  &trans  &trans  &trans         &trans   &uc 0x04 0  &kp N7  &kp N8  &kp N9  &trans  &trans
-&trans  &trans  &trans  &trans  &kp BACKSPACE  &kp DEL  &kp N0      &kp N4  &kp N5  &kp N6  &trans  &trans
-&trans  &trans  &trans  &trans  &trans         &trans   &kp KP_DOT  &kp N1  &kp N2  &kp N3  &trans  &trans
-                        &trans  &trans         &trans   &trans      &trans  &trans
-                                &trans         &trans   &trans      &trans
+&trans  &trans  &trans  &trans   &trans         &trans  &uc 0x04 0  &kp N7  &kp N8  &kp N9  &trans  &trans
+&trans  &trans  &trans  &kp DEL  &kp BACKSPACE  &trans  &kp N0      &kp N4  &kp N5  &kp N6  &trans  &trans
+&trans  &trans  &trans  &trans   &trans         &trans  &kp_dot     &kp N1  &kp N2  &kp N3  &trans  &trans
+                        &trans   &trans         &trans  &trans      &trans  &trans
+                                 &trans         &trans  &trans      &trans
             >;
         };
 
         layer_3 {
             bindings = <
-&uc UC_SET_WIN_ALT  &uc UC_SET_WIN_COMPOSE  &trans  &bootloader  &sys_reset  &bt BT_CLR_ALL  &bt BT_CLR_ALL  &sys_reset  &bootloader  &trans  &trans  &trans
-&trans              &trans                  &trans  &trans  &trans      &trans          &trans          &trans      &trans  &trans  &trans  &trans
-&trans              &trans                  &trans  &trans  &trans      &trans          &trans          &trans      &trans  &trans  &trans  &trans
-                                            &trans  &trans  &trans      &trans          &trans          &trans
-                                                    &trans  &trans      &trans          &trans
+&trans  &trans  &trans  &trans  &trans  &bt BT_CLR_ALL  &bt BT_CLR_ALL  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &sys_reset      &sys_reset      &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &bootloader     &bootloader     &trans  &trans  &trans  &trans  &trans
+                        &trans  &trans  &trans          &trans          &trans  &trans
+                                &trans  &trans          &trans          &trans
             >;
         };
     };
