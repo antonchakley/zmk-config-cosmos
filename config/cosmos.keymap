@@ -30,8 +30,8 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings =
-                <&macro_wait_time 40>,
-                <&macro_tap_time 40>,
+                <&macro_wait_time 500>,
+                <&macro_tap_time 500>,
                 <&kp LC(LEFT_SHIFT) &kp KP_DOT &kp LC(LEFT_SHIFT)>;
 
             label = "LANGSWITCH_KP_DOT";
