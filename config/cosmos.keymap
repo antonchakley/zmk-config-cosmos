@@ -29,10 +29,16 @@
         langswitch_kp_dot: langswitch_kp_dot {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings =
-                <&macro_wait_time 500>,
-                <&macro_tap_time 500>,
-                <&kp LC(LEFT_SHIFT) &kp KP_DOT &kp LC(LEFT_SHIFT)>;
+            bindings =                
+                <&macro_tap_time 50>,
+                <&macro_wait_time 50>,
+                <macro_press &kp LCTRL &kp LEFT_SHIFT>,
+                <macro_release &kp LCTRL &kp LEFT_SHIFT>,
+                <&macro_wait_time 100>,
+                <&macro_tap &kp KP_DOT>,
+                <&macro_wait_time 50>,
+                <macro_press &kp LCTRL &kp LEFT_SHIFT>,
+                <macro_release &kp LCTRL &kp LEFT_SHIFT>;
 
             label = "LANGSWITCH_KP_DOT";
         };
