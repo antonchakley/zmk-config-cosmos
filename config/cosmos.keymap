@@ -44,7 +44,7 @@
                 <&macro_wait_time 30>,
                 <&macro_release &kp LEFT_GUI>,
                 <&macro_wait_time 0>,
-                <&macro_release &kp SPACE>>;
+                <&macro_release &kp SPACE>;
 
             label = "LANGSWITCH_KP_DOT";
         };
