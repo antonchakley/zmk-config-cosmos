@@ -32,13 +32,13 @@
             bindings =                
                 <&macro_tap_time 50>,
                 <&macro_wait_time 50>,
-                <macro_press &kp LCTRL &kp LEFT_SHIFT>,
-                <macro_release &kp LCTRL &kp LEFT_SHIFT>,
+                <&macro_press &kp LCTRL &kp LEFT_SHIFT>,
+                <&macro_release &kp LCTRL &kp LEFT_SHIFT>,
                 <&macro_wait_time 100>,
                 <&macro_tap &kp KP_DOT>,
                 <&macro_wait_time 50>,
-                <macro_press &kp LCTRL &kp LEFT_SHIFT>,
-                <macro_release &kp LCTRL &kp LEFT_SHIFT>;
+                <&macro_press &kp LCTRL &kp LEFT_SHIFT>,
+                <&macro_release &kp LCTRL &kp LEFT_SHIFT>;
 
             label = "LANGSWITCH_KP_DOT";
         };
