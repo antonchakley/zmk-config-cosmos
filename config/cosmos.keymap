@@ -25,6 +25,34 @@
         };
     };
 
+    macros {
+        langswitch_kp_dot: langswitch_kp_dot {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =                
+                <&macro_tap_time 30>,
+                <&macro_wait_time 30>,
+                <&macro_press &kp LEFT_GUI &kp SPACE>,
+                <&macro_release &kp LEFT_GUI &kp SPACE>,
+                <&macro_tap &kp KP_DOT>,
+                <&macro_press &kp LEFT_GUI &kp SPACE>,
+                <&macro_release &kp LEFT_GUI &kp SPACE>;
+
+            label = "LANGSWITCH_KP_DOT";
+        };
+    };
+
+    behaviors {
+        my_kp_dot: my_kp_dot {
+            compatible = "zmk,behavior-mod-morph";
+            label = "MY_KP_DOT";
+            bindings = <&kp KP_DOT>, <&langswitch_kp_dot>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -53,7 +81,7 @@
             bindings = <
 &trans  &trans  &trans  &trans   &trans         &trans  &uc 0x04 0  &kp N7  &kp N8  &kp N9  &trans  &trans
 &trans  &trans  &trans  &kp DEL  &kp BACKSPACE  &trans  &kp N0      &kp N4  &kp N5  &kp N6  &trans  &trans
-&trans  &trans  &trans  &trans   &trans         &trans  &kp KP_DOT  &kp N1  &kp N2  &kp N3  &trans  &trans
+&trans  &trans  &trans  &trans   &trans         &trans  &my_kp_dot  &kp N1  &kp N2  &kp N3  &trans  &trans
                         &trans   &trans         &trans  &trans      &trans  &trans
                                  &trans         &trans  &trans      &trans
             >;
