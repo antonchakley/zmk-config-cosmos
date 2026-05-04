@@ -15,12 +15,12 @@
         compatible = "zmk,combos";
 
         sys_left {
-            bindings = <&mo 3>;
+            bindings = <&mo 4>;
             key-positions = <43 42>;
         };
 
         sys_right {
-            bindings = <&mo 3>;
+            bindings = <&mo 4>;
             key-positions = <44 45>;
         };
     };
@@ -39,12 +39,13 @@
             compatible = "zmk,behavior-mod-morph";
             label = "SPACE_SHIFT";
             bindings = <&kp SPACE>, <&kp LEFT_SHIFT>;
+
             #binding-cells = <0>;
             mods = <(MOD_LALT|MOD_RALT|MOD_LCTL|MOD_RCTL)>;
             keep-mods = <(MOD_LALT|MOD_RALT|MOD_LCTL|MOD_RCTL)>;
         };
 
-        rpi: require_prior_idle { 
+        rpi: require_prior_idle {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "tap-unless-interrupted";
@@ -59,25 +60,36 @@
             label = "SWAPPER";
             #binding-cells = <0>;
             bindings = <&kt LALT>, <&kp TAB>, <&kt LALT>;
+
             ignored-key-positions = <42 15>;
         };
-};
+    };
 
     keymap {
         compatible = "zmk,keymap";
 
         default_layer {
             display-name = "Base";
-            bindings = <    
-&kp ESCAPE  &kp Q  &kp W  &kp E      &kp R         &kp T           &kp Y               &kp U               &kp I      &kp O       &kp P          &kp LEFT_BRACKET
-&kp TAB     &kp A  &kp S  &kp D      &kp F         &kp G           &kp H               &kp J               &kp K      &kp L       &kp SEMICOLON  &kp SQT
-&trans      &kp Z  &kp X  &kp C      &kp V         &kp B           &kp N               &kp M               &kp COMMA  &kp PERIOD  &kp SLASH      &trans
-                          &kp LCTRL  &kp SPACE     &mo 2           &kp LEFT_SHIFT      &mo 1               &kp ENTER
+            bindings = <
+&kp ESCAPE  &kp Q  &kp W  &kp E      &kp R           &kp T           &kp Y           &kp U           &kp I      &kp O       &kp P          &kp LEFT_BRACKET
+&kp TAB     &kp A  &kp S  &kp D      &kp F           &kp G           &kp H           &kp J           &kp K      &kp L       &kp SEMICOLON  &kp SQT
+&trans      &kp Z  &kp X  &kp C      &kp V           &kp B           &kp N           &kp M           &kp COMMA  &kp PERIOD  &kp SLASH      &trans
+                          &kp LCTRL  &kp SPACE       &mo 1           &kp LEFT_SHIFT  &mo 3           &kp ENTER
                                      &kp LEFT_SHIFT  &kp LEFT_SHIFT  &kp LEFT_SHIFT  &kp LEFT_SHIFT
             >;
         };
 
-        layer_1 {
+        numbers {
+            bindings = <
+&trans  &trans  &trans              &trans              &trans  &trans  &uc 0x04 0   &kp N7  &kp N8  &kp N9  &trans  &trans
+&swap   &trans  &kp LC(LEFT_SHIFT)  &kp LS(TAB)         &swap   &trans  &kp N0       &kp N4  &kp N5  &kp N6  &trans  &trans
+&trans  &trans  &trans              &trans              &trans  &trans  &keypad_dot  &kp N1  &kp N2  &kp N3  &trans  &trans
+                                    &kp LC(LEFT_SHIFT)  &trans  &trans  &trans       &trans  &trans
+                                                        &trans  &trans  &trans       &trans
+            >;
+        };
+
+        navigation {
             bindings = <
 &trans  &trans  &trans  &trans   &trans          &trans  &trans         &trans          &trans          &trans           &trans  &trans
 &trans  &trans  &trans  &kp DEL  &kp BACKSPACE   &trans  &kp PAGE_UP    &kp BACKSPACE   &kp UP_ARROW    &kp DELETE       &trans  &trans
@@ -87,17 +99,7 @@
             >;
         };
 
-        layer_2 {
-            bindings = <
-&trans  &trans   &trans                &trans              &trans   &trans  &uc 0x04 0   &kp N7  &kp N8  &kp N9  &trans  &trans
-&swap   &trans   &kp LC(LEFT_SHIFT)    &kp LS(TAB)         &swap    &trans  &kp N0       &kp N4  &kp N5  &kp N6  &trans  &trans
-&trans  &trans   &trans                &trans              &trans   &trans  &keypad_dot  &kp N1  &kp N2  &kp N3  &trans  &trans
-                                       &kp LC(LEFT_SHIFT)  &trans   &trans  &trans       &trans  &trans
-                                       &trans              &trans   &trans  &trans
-            >;
-        };
-
-        layer_3 {
+        system {
             bindings = <
 &trans  &trans  &trans  &trans  &trans  &bt BT_CLR_ALL  &bt BT_CLR_ALL  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &sys_reset      &sys_reset      &trans  &trans  &trans  &trans  &trans
