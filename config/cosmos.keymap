@@ -15,12 +15,12 @@
         compatible = "zmk,combos";
 
         sys_left {
-            bindings = <&mo 4>;
+            bindings = <&mo 3>;
             key-positions = <43 42>;
         };
 
         sys_right {
-            bindings = <&mo 4>;
+            bindings = <&mo 3>;
             key-positions = <44 45>;
         };
     };
