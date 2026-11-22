@@ -73,11 +73,11 @@
 
         navigation {
             bindings = <
-&trans  &trans  &trans  &trans   &trans          &trans  &trans       &trans          &trans          &trans           &trans   &trans
-&trans  &trans  &trans  &kp DEL  &kp BACKSPACE   &trans  &kp PAGE_UP  &kp BACKSPACE   &kp UP_ARROW    &kp DELETE       &trans   &trans
-&trans  &trans  &trans  &trans   &trans          &trans  &kp HOME     &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp END  &trans
-                        &trans   &kp LEFT_SHIFT  &trans  &trans       &trans          &trans
-                                 &trans          &trans  &trans       &trans
+&trans  &trans  &trans    &trans         &trans          &trans  &trans       &trans          &trans          &trans           &trans   &trans
+&trans  &trans  &trans    &kp LS(PG_UP)  &trans          &trans  &kp PAGE_UP  &kp BACKSPACE   &kp UP_ARROW    &kp DELETE       &trans   &trans
+&trans  &trans  &kp HOME  &kp PAGE_DOWN  &kp END         &trans  &kp HOME     &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp END  &trans
+                          &trans         &kp LEFT_SHIFT  &trans  &trans       &trans          &trans
+                                         &trans          &trans  &trans       &trans
             >;
         };
 
