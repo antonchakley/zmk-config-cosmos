@@ -44,6 +44,18 @@
             bindings = <&kt LALT>, <&kp TAB>, <&kt LALT>;
             ignored-key-positions = <14>;
         };
+
+        // Alt is only held while &swap is active: Shift+Tab then, Ctrl+Shift otherwise.
+        // keep-mods is required so Alt stays held and the window switcher stays open.
+        swap_back: swap_back {
+            compatible = "zmk,behavior-mod-morph";
+            label = "SWAP_BACK";
+            bindings = <&kp LC(LEFT_SHIFT)>, <&kp LS(TAB)>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LALT)>;
+            keep-mods = <(MOD_LALT)>;
+        };
     };
 
     keymap {
@@ -63,7 +75,7 @@
         numbers {
             bindings = <
 &trans  &trans              &trans              &trans              &trans  &trans  &kp BACKSLASH  &kp N7  &kp N8  &kp N9  &trans  &trans
-&trans   &kp LC(LEFT_SHIFT)  &kp LS(TAB)         &swap               &trans   &trans  &kp N0         &kp N4  &kp N5  &kp N6  &trans  &trans
+&trans   &kp LC(LEFT_SHIFT)  &swap_back          &swap              &trans   &trans  &kp N0         &kp N4  &kp N5  &kp N6  &trans  &trans
 &trans  &trans              &trans              &trans              &trans  &trans  &kp MINUS      &kp N1  &kp N2  &kp N3  &trans  &trans
                                                 &kp LC(LEFT_SHIFT)  &trans  &trans  &trans         &trans  &trans
                                                                     &trans  &trans  &trans         &trans
