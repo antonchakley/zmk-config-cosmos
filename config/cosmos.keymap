@@ -82,7 +82,7 @@
             >;
         };
 
-        navigation {
+        navigation { 
             bindings = <
 &trans  &trans  &trans    &trans         &trans          &kp SQT    &kp PG_UP      &trans          &trans          &trans           &trans   &trans
 &trans  &trans  &trans    &kp PG_UP      &kp MINUS         &kp TAB   &kp PAGE_DOWN  &kp BACKSPACE   &kp UP_ARROW    &kp DELETE       &trans   &trans
