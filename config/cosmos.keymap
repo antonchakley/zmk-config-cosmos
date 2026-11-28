@@ -18,17 +18,18 @@
     };
 
     behaviors {
-        
         swap: swapper {
             compatible = "zmk,behavior-tri-state";
             label = "SWAPPER";
             #binding-cells = <0>;
             bindings = <&kt LALT>, <&kp TAB>, <&kt LALT>;
+
             ignored-key-positions = <14>;
         };
 
         // Alt is only held while &swap is active: Shift+Tab then, Ctrl+Shift otherwise.
         // keep-mods is required so Alt stays held and the window switcher stays open.
+
         swap_back: swap_back {
             compatible = "zmk,behavior-mod-morph";
             label = "SWAP_BACK";
@@ -37,7 +38,7 @@
             #binding-cells = <0>;
             mods = <(MOD_LALT)>;
             keep-mods = <(MOD_LALT)>;
-        };       
+        };
     };
 
     keymap {
@@ -46,41 +47,41 @@
         base {
             display-name = "Base";
             bindings = <
-&kp ESCAPE        &kp Q  &kp W  &kp E      &kp R           &kp T           &kp Y           &kp U           &kp I      &kp O       &kp P          &kp LEFT_BRACKET
-&kp LEFT_SHIFT     &kp A  &kp S  &kp D      &kp F           &kp G           &kp H           &kp J           &kp K      &kp L       &kp SEMICOLON  &kp SQT
-&trans            &kp Z  &kp X  &kp C      &kp V           &kp B           &kp N           &kp M           &kp COMMA  &kp PERIOD  &kp SLASH      &trans
-                          &kp LCTRL  &lt 1 SPACE       &mo 1           &kp LEFT_SHIFT  &mo 2           &kp ENTER
-                                     &kp LEFT_SHIFT  &kp LEFT_SHIFT  &kp LEFT_SHIFT  &kp LEFT_SHIFT
+&kp ESCAPE      &kp Q  &kp W  &kp E      &kp R           &kp T           &kp Y           &kp U           &kp I      &kp O       &kp P          &kp LEFT_BRACKET
+&kp LEFT_SHIFT  &kp A  &kp S  &kp D      &kp F           &kp G           &kp H           &kp J           &kp K      &kp L       &kp SEMICOLON  &kp SQT
+&trans          &kp Z  &kp X  &kp C      &kp V           &kp B           &kp N           &kp M           &kp COMMA  &kp PERIOD  &kp SLASH      &trans
+                              &kp LCTRL  &kp SPACE       &mo 1           &kp LEFT_SHIFT  &mo 2           &kp ENTER
+                                         &kp LEFT_SHIFT  &kp LEFT_SHIFT  &kp LEFT_SHIFT  &kp LEFT_SHIFT
             >;
         };
 
         numbers {
             bindings = <
-&trans  &trans              &trans              &trans              &trans  &trans  &kp BACKSLASH  &kp N7  &kp N8  &kp N9  &trans  &trans
-&trans   &kp LC(LEFT_SHIFT)  &swap_back          &swap              &trans   &trans  &kp N0         &kp N4  &kp N5  &kp N6  &trans  &trans
-&trans  &trans              &trans              &trans              &trans  &trans  &kp MINUS      &kp N1  &kp N2  &kp N3  &trans  &trans
-                                                &kp LC(LEFT_SHIFT)  &trans  &trans  &trans         &trans  &trans
-                                                                    &trans  &trans  &trans         &trans
+&trans  &trans              &trans      &trans              &trans  &trans  &kp BACKSLASH  &kp N7  &kp N8  &kp N9  &trans  &trans
+&trans  &kp LC(LEFT_SHIFT)  &swap_back  &swap               &trans  &trans  &kp N0         &kp N4  &kp N5  &kp N6  &trans  &trans
+&trans  &trans              &trans      &trans              &trans  &trans  &kp MINUS      &kp N1  &kp N2  &kp N3  &trans  &trans
+                                        &kp LC(LEFT_SHIFT)  &trans  &trans  &trans         &trans  &trans
+                                                            &trans  &trans  &trans         &trans
             >;
         };
 
-        navigation { 
+        navigation {
             bindings = <
-&trans  &trans  &trans    &trans         &trans          &kp SQT    &kp PG_UP      &trans          &trans          &trans           &trans   &trans
-&trans  &trans  &trans    &kp PG_UP      &kp MINUS         &kp TAB   &kp PAGE_DOWN  &kp BACKSPACE   &kp UP_ARROW    &kp DELETE       &trans   &trans
-&trans  &trans  &kp HOME  &kp PAGE_DOWN  &kp END         &kp SLASH  &kp HOME       &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp END  &trans
-                          &trans         &kp LEFT_SHIFT  &trans     &trans         &trans          &trans
+&trans  &trans  &trans    &trans         &trans          &kp SQT    &kp PG_UP      &kp PG_UP  &kp PAGE_DOWN  &trans      &trans  &trans
+&trans  &trans  &trans    &kp PG_UP      &kp MINUS       &kp TAB    &kp BACKSPACE  &kp LEFT   &kp RIGHT      &kp DELETE  &trans  &trans
+&trans  &trans  &kp HOME  &kp PAGE_DOWN  &kp END         &kp SLASH  &kp HOME       &kp UP     &kp DOWN       &kp END     &trans  &trans
+                          &trans         &kp LEFT_SHIFT  &trans     &trans         &trans     &trans
                                          &trans          &trans     &trans         &trans
             >;
         };
 
         system {
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &bt BT_CLR_ALL  &bt BT_CLR_ALL  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &sys_reset      &sys_reset      &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &bootloader     &bootloader     &trans  &trans  &trans  &trans  &trans
-                        &trans  &trans  &trans          &trans          &trans  &trans
-                                &trans  &trans          &trans          &trans
+&kp LC(LA(DEL))  &trans  &trans  &trans  &trans  &bt BT_CLR_ALL  &bt BT_CLR_ALL  &trans  &trans  &trans  &trans  &trans
+&trans           &trans  &trans  &trans  &trans  &sys_reset      &sys_reset      &trans  &trans  &trans  &trans  &trans
+&trans           &trans  &trans  &trans  &trans  &bootloader     &bootloader     &trans  &trans  &trans  &trans  &trans
+                                 &trans  &trans  &trans          &trans          &trans  &trans
+                                         &trans  &trans          &trans          &trans
             >;
         };
     };
